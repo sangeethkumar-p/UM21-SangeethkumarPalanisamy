@@ -1,5 +1,10 @@
 package com.TypeCasting;
 
+/**
+ * @author Sangeethkumar
+ * 
+ *In Display class -->object casting is takesplace
+ */
 public class Main {
 
 	public static void main(String[] args) {
