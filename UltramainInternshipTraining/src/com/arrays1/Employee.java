@@ -1,4 +1,4 @@
-package com.Arrays;
+package com.arrays1;
 
 public class Employee {
 	private int EmpId;

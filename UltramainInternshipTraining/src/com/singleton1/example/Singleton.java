@@ -1,4 +1,4 @@
-package com.Singleton;
+package com.singleton1.example;
 
 public class Singleton {
 	private int firstInns;

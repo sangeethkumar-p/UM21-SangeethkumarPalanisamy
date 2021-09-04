@@ -1,4 +1,4 @@
-package com.Abstract;
+package com.abstract1.exercise;
 
 abstract class Grandfather {
 	public abstract void play();

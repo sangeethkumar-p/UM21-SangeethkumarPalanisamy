@@ -1,4 +1,4 @@
-package com.TypeCasting;
+package com.typecasting;
 
 /**
  * @author Sangeethkumar

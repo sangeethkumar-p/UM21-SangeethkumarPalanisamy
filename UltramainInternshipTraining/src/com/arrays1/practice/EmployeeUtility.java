@@ -1,4 +1,4 @@
-package com.Arrays.practice;
+package com.arrays1.practice;
 import java.util.*;
 
 public class EmployeeUtility {

@@ -1,4 +1,4 @@
-package com.Singleton;
+package com.singleton1.example;
 
 public class SingletonTwo {
 	public static void main(String args[]) {

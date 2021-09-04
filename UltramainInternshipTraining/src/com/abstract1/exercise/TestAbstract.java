@@ -1,4 +1,4 @@
-package com.Abstract;
+package com.abstract1.exercise;
 
 public class TestAbstract {
 
