@@ -19,7 +19,8 @@ public class EmployeeBO {
 			System.out.println("2. Register Employee");
 			System.out.println("3. Remove Employee ");
 			System.out.println("4. Update Employee");
-			System.out.println("5. Exit");
+			System.out.println("5. Search Employee by employeeId");
+			System.out.println("6. Exit");
 			System.out.println("Enter your Choice: ");
 			choice = scan.nextInt();
 			System.out.println("---------------------------------");
@@ -27,7 +28,8 @@ public class EmployeeBO {
 		
 		switch(choice){
 		case 1:
-			viewEmployees(dao);
+	//		viewEmployees(dao);
+			viewAll(dao);
 			break;
 		case 2:
 			registerEmployee(dao);
@@ -39,18 +41,65 @@ public class EmployeeBO {
 			updateEmployee(dao);
 			break;
 		case 5:
+			System.out.println("Enter id :");
+			int search=Scan.getScannerInstance().nextInt();
+			viewSpecific(dao,search);
+			break;
+		case 6:
 			return;
 		}
 		empSystem();
 	}
 	
-	public void viewEmployees(EmpDao dao){
+  /*	public void viewEmployees(EmpDao dao){
 		try {
-			dao.viewEmployees();
+		    dao.viewEmployees();
 		} catch (SQLException e) {
 			System.out.println(e.getMessage());
 		}
 		
+	
+	}  */
+	public void viewAll(EmpDao dao) {
+		try {
+			HashMap<Integer,EmpDto>map=new HashMap();
+			map.putAll(dao.viewAll());
+			Set<Map.Entry<Integer, EmpDto>>entrySet=map.entrySet();
+			EmpDto dto=new EmpDto();
+			for(Map.Entry<Integer, EmpDto>entry:entrySet) {
+				System.out.println("EmployeeId:"+entry.getValue().getEmployeeId());
+				System.out.println("First_name:"+entry.getValue().getFirstName());
+				System.out.println("Last_name :"+entry.getValue().getLastName());
+				System.out.println("Salary    :"+entry.getValue().getSalary());
+				System.out.println("Mobile    :"+entry.getValue().getMobile());
+				System.out.println("Department:"+entry.getValue().getDepartment());
+				System.out.println("--------------------------------");
+				
+			}
+		}catch(SQLException e) {
+			return ;
+			
+		}
+	}
+	public void viewSpecific(EmpDao dao,int id) {
+		try {
+			HashMap<Integer,EmpDto>map=new HashMap();
+			map.putAll(dao.viewAll());
+			Set<Map.Entry<Integer, EmpDto>>entrySet=map.entrySet();
+			for(Map.Entry<Integer, EmpDto>entry:entrySet) {
+				if(entry.getKey()==id) {
+					System.out.println("EmployeeId:"+entry.getValue().getEmployeeId());
+					System.out.println("first_name:"+entry.getValue().getFirstName());
+					System.out.println("last_name :"+entry.getValue().getLastName());
+					System.out.println("Salary    :"+entry.getValue().getSalary());
+					System.out.println("mobile    :"+entry.getValue().getMobile());
+					System.out.println("Department:"+entry.getValue().getDepartment());
+					System.out.println("--------------------------------");
+				}
+			}
+		}catch(SQLException e) {
+			return;
+		}
 	}
 	public void registerEmployee(EmpDao dao){
 		System.out.println("How many employees registered? ");
@@ -80,7 +129,7 @@ public class EmployeeBO {
 		
 	} 
 	private void updateEmployee(EmpDao empDao) {
-		try {
+	try {
 		Scanner scan=Scan.getScannerInstance();
 		System.out.println("Enter EmployeeId to update:");
 		int id=scan.nextInt();
@@ -89,8 +138,9 @@ public class EmployeeBO {
 		empDao.updateEmployee(dto);
 		}catch(SQLException e) {
 			return;
-		}     
+		}      
 	} 
+	
 	
 	/**
 	 * @param n
